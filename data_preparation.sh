@@ -12,11 +12,11 @@ else
   # Check if Python 3.9 is installed correctly
 fi
 
-if [[ -d "envs/NLSN" ]]; then
-  echo "Virtual environment 'myenv' exists."
+if [[ -d "NLSN" ]]; then
+  echo "Virtual environment 'NLSN' exists."
   source NLSN/bin/activate
 else
-  echo "Virtual environment 'myenv' does not exist."
+  echo "Virtual environment 'NLSN' does not exist."
   python3.9 -m venv NLSN
   source NLSN/bin/activate
   pip install super-image
