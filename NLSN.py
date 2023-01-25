@@ -13,11 +13,17 @@ class NLSA(nn.Module):
             n_batch, n_channels, h, w = inputs.size()
         elif len(inputs.size()) == 3:
             n_channels, h, w = inputs.size()
+            n_batch = None
         else:
             raise ValueError(f"Expect (N,C,H,W) or (C,H,W) dims of inputs. Incoming inputs dims are {inputs.size()}")
 
         m = min(h*w/144, 128)
-        random_matrices = torch.randn()
+        if n_batch:
+            random_matrices = torch.randn(n_batch,n_channels, m)
+        else:
+            random_matrices = torch.randn(n_channels, m)
+
+        hash_code = torch.matmul(inputs.permute(0), random_matrices)
 
 
 
